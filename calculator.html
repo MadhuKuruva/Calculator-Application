@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computing Calculator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      }
+      div {
+        height: auto;
+        width: 390px;
+        border-style: solid;
+        border-color: rgb(15, 100, 7);
+        border-radius: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        /*box-shadow: 0 0 0 3px rgba(180, 226, 182, 0.865);*/
+      }
+      h2 {
+        color: rgb(15, 100, 7);
+        margin-bottom: 40px;
+      }
+      label {
+        color: rgb(15, 100, 7);
+        font-size: 20px;
+      }
+      input {
+        font-size: 16px;
+        padding: 10px;
+        border-style: solid;
+        border-color: rgb(4, 125, 4);
+        border-radius: 10px;
+        margin: 5px;
+        outline: none;
+        /*background-color:rgba(9, 203, 9, 0.134);*/
+      }
+      input::placeholder {
+        color: rgb(4, 125, 4);
+      }
+      input:hover {
+        background-color: white;
+      }
+      input:active,
+      input:focus {
+        border-color: rgb(4, 125, 4);
+      }
+      button {
+        color: rgb(15, 100, 7);
+        background-color: rgba(9, 203, 9, 0.134);
+        font-size: 16px;
+        border-width: 1px;
+        border-style: solid;
+        padding: 10px 15px;
+        border-radius: 20px;
+        margin: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
+      }
+      button:hover {
+        color: white;
+        background-color: rgb(4, 145, 4);
+        font-weight: bold;
+      }
+      button:active {
+        opacity: 0.5;
+      }
+      p {
+        color: rgb(10, 117, 10);
+        /*color:rgb(8, 64, 3); */
+        font-size: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>
+        <b><u>COMPUTING - CALCULATOR</u></b>
+      </h2>
+      <form onsubmit="calculate(); return false">
+        <label>NUMBER-1:</label>
+        <input type="text" id="n1" placeholder="Enter a number" />
+        <br /><br />
+        <label>NUMBER-2:</label>
+        <input type="text" id="n2" placeholder="Enter a number" />
+        <br /><br />
+
+        <button type="submit">SUM</button>
+        <button type="submit">SUB</button>
+        <button type="submit">MUL</button>
+        <button type="submit">DIV</button>
+        <button type="submit">REM</button>
+      </form>
+
+      <br /><br />
+      <p id="result">"Output will come here"</p>
+    </div>
+
+    <script>
+      function calculate() {
+        let a = document.getElementById("n1").value;
+        let b = document.getElementById("n2").value;
+
+        if (a === "" || b === "") {
+          document.getElementById("result").innerHTML =
+            "Please enter values for both numbers.";
+        } else if (isNaN(a) || isNaN(b)) {
+          document.getElementById("result").innerHTML =
+            "Please enter valid numeric values.";
+        } else {
+          a = parseFloat(a);
+          b = parseFloat(b);
+
+          let op;
+          // Perform the calculation based on the button clicked
+          if (event.submitter.textContent === "SUM") {
+            op = a + b;
+          } else if (event.submitter.textContent === "SUB") {
+            op = a - b;
+          } else if (event.submitter.textContent === "MUL") {
+            op = a * b;
+          } else if (event.submitter.textContent === "DIV") {
+            op = a / b;
+          } else if (event.submitter.textContent === "REM") {
+            op = a % b;
+          }
+          console.log(event.submitter.textContent + ": " + op);
+          document.getElementById("result").innerHTML =
+            "' " +
+            event.submitter.textContent +
+            " of " +
+            a +
+            " and " +
+            b +
+            " = " +
+            op +
+            " '";
+        }
+      }
+    </script>
+  </body>
+</html>
